@@ -56,7 +56,26 @@ When we run the above `curl` command, we get this error:
   "title": "Unauthorized",
   "type": "about:blank"
 }
+```
 
+If we add an API key, we can get it to work:
+
+```shell
+curl -X 'GET' \
+  'http://localhost:8080/api/v3/store/inventory' \
+  -H 'accept: application/json' \
+  -H 'api_key: fake'
+```
+
+Now we have a response!
+
+```shell
+→ curl -X 'GET' \
+>   'http://localhost:8080/api/v3/store/inventory' \
+>   -H 'accept: application/json' \
+>   -H 'api_key: fake'
+
+"do some magic!"
 ```
 
 ---
