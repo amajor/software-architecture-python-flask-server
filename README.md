@@ -1,3 +1,65 @@
+# Lab 6 Assignment (Python Flask Version)
+Specification and documentation of a systems Application Programming Interface (API) is an essential part of any architecture documentation and serves multiple stakeholders. In this lab, you will work with OpenAPI specification language to study and experiment with the specification of a RESTful API of a simple PetStore service, use Swagger UI to generate an interactive web-based documentation, and Swagger Codegen to generate a fully functional mock server.
+
+## Steps
+
+  - Step 1: familiarize yourself with the Swagger toolset: https://swagger.io/
+
+  - Step 2: use Swagger Editor and learn key features of the specification language: https://editor.swagger.io/
+
+  - Step 3: generate and download a mock server of your choice using the “Generate Server” tab, Swagger can generate various types of servers including Java-based, Python-flask, nodejs-server and many more.
+
+The downloaded mock server contains a README file, follow the instructions listed in the README file to run a local instance of the mock server, the server binds to a local port and can be used to invoke all functions specified in your API specification.
+
+## Deliverables
+
+  - Screenshots showing a successful invocation of `/store/inventory` API endpoint.
+
+  - Screenshot showing a successful invocation of `/pet/{petId}` endpoint, you can obtain a valid PET ID using the /pet/findByStatus endpoint.
+
+  - For the endpoint `/store/order` (POST), show an example json request payload.
+
+  - Screenshot showing that the mock server runs successfully on your local machine.
+
+---
+# Steps to Run
+
+```shell
+# Build the server
+docker build -t swagger_server .
+
+# Start the server in a container
+docker run -p 8080:8080 swagger_server
+```
+
+Your server is now running. You can see the swagger docs at http://localhost:8080/api/v3/ui/
+
+For example, you can use `curl` to get the store inventory (documented in Swagger at http://localhost:8080/api/v3/ui/#/store/get_inventory):
+
+```shell
+curl -X 'GET' \
+  'http://localhost:8080/api/v3/store/inventory' \
+  -H 'accept: application/json'
+```
+
+**PROBLEM!**
+When we run the above `curl` command, we get this error:
+
+```shell
+→ curl -X 'GET' \
+>   'http://localhost:8080/api/v3/store/inventory' \
+>   -H 'accept: application/json'
+
+{
+  "detail": "No authorization token provided",
+  "status": 401,
+  "title": "Unauthorized",
+  "type": "about:blank"
+}
+
+```
+
+---
 # Swagger generated server
 
 ## Overview
